@@ -1,2 +1,2 @@
 # MBBannerlordModTemplate
-Mod Template for Mount &amp; Blade Bannerlord Mods
+Mod Template for Mount & Blade Bannerlord Mods
