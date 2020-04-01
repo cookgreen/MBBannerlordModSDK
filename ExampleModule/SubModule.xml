@@ -1,0 +1,20 @@
+<Module>
+     <Name value="Example Mod"/>
+     <Id value="ExampleMod"/>
+     <Version value="v1.0.0"/>
+     <SingleplayerModule value="true"/>
+     <MultiplayerModule value="false"/>
+     <DependedModules/>
+     <SubModules>
+         <SubModule>
+             <Name value="ExampleMod"/>
+             <DLLName value="ExampleMod.dll"/>
+             <SubModuleClassType value="ExampleMod.MyModule"/>
+             <Tags>
+                 <Tag key="DedicatedServerType" value="none" />
+                 <Tag key="IsNoRenderModeElement" value="false" />
+             </Tags>
+         </SubModule>
+     </SubModules>
+     <Xmls/>
+ </Module>

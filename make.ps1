@@ -6,7 +6,7 @@
 function All-Command
 {
 	echo "Checking Module Solution File....."
-	$moduleSolutionFile = $env:BANNERLORD_MOD_NAME + "/" + $env:BANNERLORD_MOD_ASSEMBLY_NAME + ".sln"
+	$moduleSolutionFile = $env:MOD_NAME + "/" + $env:MOD_ASSEMBLY_NAME + ".sln"
 	
 	If (!(Test-Path $moduleSolutionFile))
 	{
@@ -117,7 +117,7 @@ function ReadConfigLine($line, $name)
 
 function ParseConfigFile($fileName)
 {
-	$names = @("BANNERLORD_DIRECTORY", "BANNERLORD_MOD_NAME")
+	$names = @("BANNERLORD_DIRECTORY", "MOD_NAME", "MOD_ASSEMBLY_NAME", "MOD_FOLDER")
 
 	$reader = [System.IO.File]::OpenText($fileName)
 	while($null -ne ($line = $reader.ReadLine()))
@@ -179,12 +179,12 @@ $env:MOD_SEARCH_PATHS = (Get-Item -Path ".\" -Verbose).FullName + "\mods,./mods"
 if ($command -eq "all" -or $command -eq "clean")
 {
 	$bannerlorddir = $env:BANNERLORD_DIRECTORY
-	$bannerlordExe = $bannerlorddir + "/bin/Win64_ShippingClient/bannerlord.exe"
-	$bannerlordModName = $env:BANNERLORD_MOD_NAME
+	$bannerlordExe = $bannerlorddir + "/bin/Win64_Shipping_Client/bannerlord.exe"
+	$bannerlordModName = $env:MOD_NAME
 
-	$templateDir = $pwd.Path
-	$versionFile = $env:ENGINE_DIRECTORY + "/VERSION"
-	$currentEngine = ""
+	#$templateDir = $pwd.Path
+	#$versionFile = $env:ENGINE_DIRECTORY + "/VERSION"
+	#$currentEngine = ""
 
 	#if ($currentEngine -ne "" -and $currentEngine -eq $env:ENGINE_VERSION)
 	#{
