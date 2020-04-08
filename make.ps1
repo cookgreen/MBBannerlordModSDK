@@ -6,7 +6,7 @@
 function All-Command
 {
 	echo "Checking Module Solution File....."
-	$moduleSolutionFile = $env:MOD_NAME + "/" + $env:MOD_ASSEMBLY_NAME + ".sln"
+	$moduleSolutionFile = $env:MOD_ASSEMBLY_NAME + ".sln"
 	
 	If (!(Test-Path $moduleSolutionFile))
 	{
@@ -22,6 +22,7 @@ function All-Command
 		return
 	}
 
+	echo "Compiling....."
 	dotnet build /p:Configuration=Release /nologo
 	if ($lastexitcode -ne 0)
 	{
@@ -30,6 +31,14 @@ function All-Command
 	else
 	{
 		Write-Host "Build succeeded." -ForegroundColor Green
+		
+		$src = "bin\\" + $env:MOD_ASSEMBLY_NAME + ".dll"
+		$dest = $env:MOD_FOLDER + "\\bin\\Win64_Shipping_Client\\" + $env:MOD_ASSEMBLY_NAME + ".dll"
+		copy $src $dest -Force
+		
+		$src = $env:MOD_FOLDER + "\*"
+		$dest = $env:BANNERLORD_DIRECTORY + "\\Modules\\" + $env:MOD_FOLDER + "\\"
+		copy $src $dest -Recurse -Force
 	}
 }
 
