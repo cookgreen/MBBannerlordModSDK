@@ -13,13 +13,13 @@ function Copy-Bannerlord-Dlls
 		New-Item -Path "." -Name "lib" -ItemType "directory"
 	}
 	
-	$bannerlodBinDir = $env:BANNERLORD_DIRECTORY + "\\bin\\Win64_Shipping_Client\\";
+	$bannerlordBinDir = $env:BANNERLORD_DIRECTORY + "\\bin\\Win64_Shipping_Client\\";
 	
-	$bannerlodDlls = $bannerlodBinDir + "*.dll"
-	copy $bannerlodDlls "lib\\" -Force
+	$bannerlordDlls = $bannerlordBinDir + "*.dll"
+	copy $bannerlordDlls "lib\\" -Force
 	
-	$bannerlodExes = $bannerlodBinDir + "*.exe"
-	copy $bannerlodExes "lib\\" -Force
+	$bannerlordExes = $bannerlordBinDir + "*.exe"
+	copy $bannerlordExes "lib\\" -Force
 }
 
 function All-Command
@@ -60,7 +60,8 @@ function All-Command
 		$dest = $env:BANNERLORD_DIRECTORY + "\\Modules\\" + $env:MOD_FOLDER + "\\"
 		copy $src $dest -Recurse -Force
 		
-		echo "Done!"
+		echo "Starting Bannerlord......"
+		Start-Process -FilePath $bannerlordExe
 	}
 }
 
