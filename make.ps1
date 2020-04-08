@@ -3,6 +3,25 @@
 ###############################################################
 ########################## FUNCTIONS ##########################
 ###############################################################
+
+function Copy-Bannerlord-Dlls
+{
+	echo "Copying Bannerlord Assemblies to the Module Lib Directory......"
+	
+	if(!(Test-Path "lib"))
+	{
+		New-Item -Path "." -Name "lib" -ItemType "directory"
+	}
+	
+	$bannerlodBinDir = $env:BANNERLORD_DIRECTORY + "\\bin\\Win64_Shipping_Client\\";
+	
+	$bannerlodDlls = $bannerlodBinDir + "*.dll"
+	copy $bannerlodDlls "lib\\" -Force
+	
+	$bannerlodExes = $bannerlodBinDir + "*.exe"
+	copy $bannerlodExes "lib\\" -Force
+}
+
 function All-Command
 {
 	echo "Checking Module Solution File....."
@@ -32,6 +51,7 @@ function All-Command
 	{
 		Write-Host "Build succeeded." -ForegroundColor Green
 		
+		echo "Copy Module to the Bannerlord Directory......."
 		$src = "bin\\" + $env:MOD_ASSEMBLY_NAME + ".dll"
 		$dest = $env:MOD_FOLDER + "\\bin\\Win64_Shipping_Client\\" + $env:MOD_ASSEMBLY_NAME + ".dll"
 		copy $src $dest -Force
@@ -39,6 +59,8 @@ function All-Command
 		$src = $env:MOD_FOLDER + "\*"
 		$dest = $env:BANNERLORD_DIRECTORY + "\\Modules\\" + $env:MOD_FOLDER + "\\"
 		copy $src $dest -Recurse -Force
+		
+		echo "Done!"
 	}
 }
 
@@ -214,6 +236,8 @@ if ($command -eq "all" -or $command -eq "clean")
 
 		if (Test-Path $bannerlordExe)
 		{
+			Copy-Bannerlord-Dlls
+			
 			All-Command
 		}
 		else
