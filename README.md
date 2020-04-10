@@ -1,5 +1,5 @@
-# M&B Bannerlord Mod Template
-Mod Template for Mount & Blade Bannerlord Mods
+# M&B Bannerlord Mod SDK
+Mod SDK for Mount & Blade Bannerlord Mods
 
 ## Usage
 Replace the mod.config variable with your own:
