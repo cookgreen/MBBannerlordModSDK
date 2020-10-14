@@ -1,7 +1,7 @@
 
 setlocal EnableDelayedExpansion
 
-FOR /F "tokens=1,2 delims==" %%A IN (mod.ini) DO (set %%A=%%B)
+FOR /F "tokens=1,2 delims==" %%A IN (mod.config) DO (set %%A=%%B)
 xcopy SubModule\* "%BANNERLORD_DIRECTORY%\Modules\%MOD_NAME%\*" /Y /R /E
 
 cd "%BANNERLORD_DIRECTORY%\bin\Win64_Shipping_Client"
